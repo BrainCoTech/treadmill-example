@@ -1,0 +1,18 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            credentials {
+                username='maven-read'
+                password='yC2bCzx3UoaBTIC8'
+            }
+            url = "https://nexus.ci.brainco.cn/repository/maven-public"
+        }
+    }
+}
+
+tasks.register('clean', Delete) {
+    //noinspection GrDeprecatedAPIUsage
+    delete rootProject.buildDir
+}
