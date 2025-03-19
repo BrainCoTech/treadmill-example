@@ -7,20 +7,20 @@ if [[ "$OSTYPE" == "msys" ]]; then
   exit 1
 fi
 
+# Colorful echo functions
+echo_y() { echo -e "\033[1;33m$*\033[0m"; } # Yellow
+echo_r() { echo -e "\033[0;31m$*\033[0m"; } # Red
+
 # Get the script's directory to handle paths relative to it
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DIST_DIR="${SCRIPT_DIR}/dist"
 ZIP_NAME="ios.zip"
 
 # Configuration
-LIB_VERSION="v0.0.3"
+LIB_VERSION="v0.0.4"
 BASE_URL="https://app.brainco.cn/universal/treadmill/libs/${LIB_VERSION}"
 LIB_NAME="ios"
 DOWNLOAD_URL="${BASE_URL}/${ZIP_NAME}?$(date +%s)" # Use timestamp for uniqueness
-
-# Colorful echo functions
-echo_y() { echo -e "\033[1;33m$*\033[0m"; } # Yellow
-echo_r() { echo -e "\033[0;31m$*\033[0m"; } # Red
 
 # Clean up previous files
 echo_y "[treadmill-sdk] Cleaning up previous distribution..."
@@ -30,7 +30,8 @@ rm -rf "$DIST_DIR" "${SCRIPT_DIR}/__MACOSX" "${SCRIPT_DIR}/${ZIP_NAME}"
 mkdir -p "$DIST_DIR"
 
 # Download library
-echo_y "[treadmill-sdk] Downloading (${LIB_VERSION})..."
+echo_y "[treadmill-sdk] Downloading ${LIB_NAME} (${LIB_VERSION})..."
+echo_y "[treadmill-sdk] Download URL: ${DOWNLOAD_URL}"
 if ! command -v wget >/dev/null 2>&1; then
   echo_r "Error: wget is not installed. Please install it and try again."
   exit 1

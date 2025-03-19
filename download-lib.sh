@@ -7,7 +7,7 @@ DIST_DIR="${SCRIPT_DIR}/dist"
 VERSION_FILE="${SCRIPT_DIR}/VERSION"
 
 # Configuration
-LIB_VERSION="v0.0.3"
+LIB_VERSION="v0.0.4"
 BASE_URL="https://app.brainco.cn/universal/treadmill/libs/${LIB_VERSION}"
 
 # Colorful echo functions
@@ -32,10 +32,6 @@ case "$PLATFORM" in
   ;;
 "msys" | "MINGW"*)
   LIB_NAME="win"
-  # Uncomment below if PowerShell script integration is needed
-  # echo_y "[treadmill-sdk] Running Windows-specific download script..."
-  # powershell -Command "& '${SCRIPT_DIR}/download-lib.bat'"
-  # exit 0
   ;;
 *)
   echo_r "Error: This script does not support your platform ($PLATFORM)"
